@@ -1,0 +1,34 @@
+
+# -*- coding: UTF-8 -*-
+ 
+import Tkinter
+
+top=Tkinter.Tk()
+
+entry1=Tkinter.Entry(top)
+entry1.pack()
+
+scroll=Scrollbar(top)
+
+wordlist=Listbox(top,setgrid=True,yscrollcommand=scroll.set)
+
+scroll.pack(side=RIGHT,fill=Y)
+scroll.config(command=wordlist.yview)
+
+def search_word():
+    wordlist.insert(END,entry1.get())#是索引插入，END是向最后一个后面插入，ACTIVE是向当前选中的前一个插入
+    
+def word_list():   
+    wordlist.pack()
+    button3=Tkinter.Button(top,text="删除",command=lambda x=wordlist:x.delete(ACTIVE))
+    button3.pack() 
+        
+button1=Tkinter.Button(top,text='添加单词',command=search_word)
+button2=Tkinter.Button(top,text='查看所有单词',comman=word_list)
+
+button1.pack()
+button2.pack()
+
+
+
+top.mainloop()
